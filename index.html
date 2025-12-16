@@ -1,60 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Camilo A. Riaño-Rios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      margin-top: 1.5em;
-    }
-    a {
-      color: #0056b3;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <a class="brand__name" href="index.html">Camilo A. Riaño-Rios</a>
+        <div class="brand__meta">Assistant Professor • Florida Institute of Technology</div>
+      </div>
 
-<h1>Camilo A. Riaño-Rios</h1>
-<p>
-Assistant Professor, Aerospace Engineering<br>
-Florida Institute of Technology
-</p>
+      <nav class="nav">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<h2>Research</h2>
-<p>
-Nonlinear adaptive control, learning-based identification, spacecraft GNC,
-differential drag, and hardware-in-the-loop validation.
-</p>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Research in spacecraft autonomy, adaptive control, and learning-enabled GNC.</h1>
+        <p class="lead">
+          I lead the Space Vehicles and Robotics (SVR) Lab, focusing on nonlinear/adaptive control,
+          data-driven identification, and validation through SIL/HIL testbeds.
+        </p>
 
-<h2>Publications</h2>
-<ul>
-  <li>Paper 1 – Journal / Conference, Year</li>
-  <li>Paper 2 – Journal / Conference, Year</li>
-</ul>
+        <div class="buttons">
+          <a class="btn" href="publications.html">View publications</a>
+          <a class="btn btn--ghost" href="projects.html">SVR Lab projects</a>
+        </div>
+      </div>
+    </section>
 
-<h2>Projects</h2>
-<ul>
-  <li>SVR Lab ADCS Testbed</li>
-  <li>Differential Drag Estimation</li>
-</ul>
+    <section class="grid">
+      <div class="card">
+        <h2>Research Themes</h2>
+        <ul>
+          <li>Adaptive & nonlinear control with stability guarantees</li>
+          <li>Learning-based identification (e.g., sparse methods)</li>
+          <li>Spacecraft relative motion & differential drag</li>
+          <li>Health estimation and testbed validation (SIL/HIL)</li>
+        </ul>
+      </div>
 
-<h2>Contact</h2>
-<p>
-Email: camilori [at] fit.edu<br>
-GitHub: <a href="https://github.com/camilori">github.com/camilori</a>
-</p>
+      <div class="card">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="projects.html">SVR Lab</a></li>
+          <li><a href="publications.html">Publications</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="y"></span> Camilo A. Riaño-Rios</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>
