@@ -1,0 +1,70 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Camilo A. Riaño-Rios</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <a class="brand__name" href="index.html">Camilo A. Riaño-Rios</a>
+        <div class="brand__meta">
+          Assistant Professor • Florida Institute of Technology
+        </div>
+      </div>
+  
+      <nav class="nav">
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <h1>Space Vehicles and Robotics (SVR) Lab</h1>
+
+    <h2>The SVR lab @ Florida Tech</h2>
+
+    The SVR lab specializes in the design, development and implementation of novel Guidance Navigation and Control (GNC) strategies for robots and space vehicles.
+
+    Our research is focused on improving the reliability and robustness of critical GNC algorithms for space missions by applying nonlinear adaptive control, machine learning strategies or a combination of both. These robust algorithms are relevant for several applications in the growing space industry.
+
+    Although the theoretical development is fundamental part of SVR lab’s research. We also believe that thorough on-ground testing of these algorithms using state-of-the-art testbeds is necessary. Therefore, we also work on designing and building testing equipment.
+
+    <h2>Facilities and Equipment</h2>
+    <h3> Workstations </h3>
+    <ul>
+      <li>
+        Mac studio M2: 12-core CPU, 30-core GPU, 16-core neural engine, 64GB unified Memory.
+      </li>
+      <li>
+        Linux/Windows workstations: Intel core i7, NVIDIA RTX 4060, 16 GB memory.
+      </li>
+      <li>
+        Workstations are remotely accessible and connected to a local network, enabling the development of distributed applications.
+      </li>
+      <li>
+        We have access, through Florida Tech, to software: MATLAB, STK, LabVIEW, PTC Creo, etc.
+      </li>
+    </ul>
+   
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="y"></span> Camilo A. Riaño-Rios</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
