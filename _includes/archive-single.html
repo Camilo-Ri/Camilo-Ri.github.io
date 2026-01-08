@@ -38,6 +38,9 @@
       {% if post.pdf %}
         <meta name="citation_pdf_url" content="{{ site.url }}{{ post.pdf }}">
       {% endif %}
+      {% if post.doi %}
+        <meta name="citation_doi" content="{{ post.doi }}">
+      {% endif %}
     {% endif %}
     <!-- =========================== -->
 
