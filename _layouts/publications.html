@@ -4,18 +4,49 @@
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <style>
+    .publication {
+      margin-bottom: 1.5em;
+    }
+    details {
+      background: #f9f9f9;
+      padding: 0.5em;
+      border-left: 4px solid #007ACC;
+    }
+    button {
+      margin-top: 0.5em;
+      padding: 0.3em 0.6em;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>{{ page.title }}</h1>
+  <header>
+    <h1>{{ page.title }}</h1>
+  </header>
 
-  {% for pub in site.data.publications %}
+  {% assign sorted_pubs = site.data.publications | sort: "year" | reverse %}
+
+  {% for pub in sorted_pubs %}
     <div class="publication">
       <strong>{{ pub.title }}</strong> — {{ pub.authors }}, {{ pub.year }}
+
       <details>
         <summary>Show BibTeX</summary>
-        <pre>{{ pub.bibtex }}</pre>
+        <pre id="bib-{{ forloop.index }}">{{ pub.bibtex }}</pre>
+        <button onclick="copyBib({{ forloop.index }})">Copy BibTeX</button>
       </details>
     </div>
   {% endfor %}
+
+  <script>
+    function copyBib(index) {
+      const bib = document.getElementById(`bib-${index}`).innerText;
+      navigator.clipboard.writeText(bib)
+        .then(() => alert("BibTeX copied!"))
+        .catch(() => alert("Failed to copy BibTeX."));
+    }
+  </script>
 </body>
 </html>
