@@ -27,6 +27,9 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
+      {% if include.number %}
+        {{ include.number }}. 
+      {% endif %}
       {% if post.pdf %}
         <a href="{{ post.pdf }}">{{ title }}</a>
       {% elsif post.paperurl %}
