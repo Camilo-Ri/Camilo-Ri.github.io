@@ -2,7 +2,7 @@
 title: "Relative Maneuvering for Multiple Spacecraft Via Differential Drag Using LQR and Constrained Least Squares"
 collection: publications
 category: conferences
-permalink: /publication/2019-aiaa-sfmm1-1
+permalink: /publication/2019-aiaa-sfmm-1
 excerpt: ""
 date: 2019-01-05
 
