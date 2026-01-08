@@ -33,5 +33,23 @@ author_profile: true
   {% endfor %}
 {% endif %}
 
+{% if post.bibtex %}
+  <details>
+    <summary>Show BibTeX</summary>
+    <pre id="bib-{{ forloop.index }}">{{ post.bibtex }}</pre>
+    <button onclick="copyBib({{ forloop.index }})">Copy BibTeX</button>
+  </details>
+{% endif %}
+
+<script>
+function copyBib(index) {
+  const bib = document.getElementById(`bib-${index}`).innerText;
+  navigator.clipboard.writeText(bib)
+    .then(() => alert("BibTeX copied!"))
+    .catch(() => alert("Failed to copy BibTeX."));
+}
+</script>
+
+
 
 
