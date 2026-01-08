@@ -69,6 +69,13 @@
     
           <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
 
+          {% if post.doi %}
+            <p>
+              <a href="https://doi.org/{{ post.doi }}" target="_blank" rel="noopener">View on Publisher Site (DOI)</a>
+            </p>
+          {% endif %}
+
+    
           {% if post.bibtex %}
             <details>
               <summary>Show BibTeX</summary>
