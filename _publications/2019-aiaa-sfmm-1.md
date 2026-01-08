@@ -18,6 +18,7 @@ authors:
 publication_type: "Conference paper"
 
 pdf: /files/SfMM1.pdf
+doi: #10.2514/6.2019-346
 arxiv: 
 
 bibtex: |
