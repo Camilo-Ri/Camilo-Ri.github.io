@@ -26,6 +26,21 @@
       </div>
     {% endif %}
 
+    <!-- =========================== -->
+    <!-- Google Scholar / Highwire meta tags -->
+    {% if post.collection == 'publications' %}
+      <meta name="citation_title" content="{{ post.title }}">
+      {% for author in post.authors %}
+        <meta name="citation_author" content="{{ author }}">
+      {% endfor %}
+      <meta name="citation_publication_date" content="{{ post.date | date: "%Y/%m/%d" }}">
+      <meta name="citation_conference_title" content="{{ post.venue }}">
+      {% if post.pdf %}
+        <meta name="citation_pdf_url" content="{{ site.url }}{{ post.pdf }}">
+      {% endif %}
+    {% endif %}
+    <!-- =========================== -->
+
     <h2 class="archive__item-title" itemprop="headline">
       {% if include.number %}
         {{ include.number }}. 
