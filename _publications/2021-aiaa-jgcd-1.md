@@ -18,7 +18,7 @@ authors:
   - Norman G. Fitz-Coy
   - Warren E. Dixon
 
-publication_type: "Conference paper"
+publication_type: "Journal paper"
 
 pdf: /files/2021-aiaa-jgcd-1.pdf
 doi: 10.2514/1.G005515
