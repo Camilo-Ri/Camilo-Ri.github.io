@@ -4,7 +4,7 @@ collection: publications
 category: manuscripts
 permalink: /publication/2021-aiaa-jgcd-1
 excerpt: ""
-date: 2020-04-26
+date: 2020-12-29
 
 venue: "Journal of Guidance, Control, and Dynamics"
 volume: "44"
