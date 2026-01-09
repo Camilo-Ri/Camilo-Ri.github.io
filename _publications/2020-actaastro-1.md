@@ -12,9 +12,9 @@ number: ""
 pages: "189-203"
 
 authors:
-  - Morokot Sakal
   - Camilo Riano-Rios
-  - Madhur Tiwari
+  - Riccardo Bevilacqua
+  - Warren E. Dixon
 
 publication_type: "Conference paper"
 
