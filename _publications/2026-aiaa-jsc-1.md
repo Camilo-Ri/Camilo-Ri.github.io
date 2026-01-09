@@ -17,7 +17,7 @@ authors:
   - Morokot Sakal
   - Madhur Tiwari
 
-publication_type: "Journal paper"
+publication_type: "Work in Progress / Under Review"
 
 pdf: /files/2026-aiaa-jsc-1.pdf
 doi: 
