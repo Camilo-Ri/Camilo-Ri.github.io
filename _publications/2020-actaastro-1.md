@@ -6,7 +6,7 @@ permalink: /publication/2020-actaastro-1
 excerpt: ""
 date: 2020-04-26
 
-venue: "AIAA SciTech Forum"
+venue: "Acta Astronautica"
 volume: "174"
 number: ""
 pages: "189-203"
