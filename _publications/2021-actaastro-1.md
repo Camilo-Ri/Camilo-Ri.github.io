@@ -13,7 +13,7 @@ pages: "733-740"
 
 authors:
   - Camilo Riano-Rios
-  - Riccardo Bavilacqua
+  - Riccardo Bevilacqua
   - Warren E. Dixon
 
 publication_type: "Journal paper"
