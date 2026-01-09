@@ -1,5 +1,4 @@
 ---
-layout: page
 title: "SVR Lab"
 permalink: /svr-lab/
 author_profile: true
