@@ -18,18 +18,23 @@ author_profile: true
 {% if site.publication_category %}
 
   {% for category in site.publication_category %}
-    <h2>{{ category[1].title }}</h2>
-    <hr />
 
     {% assign pubs_in_cat = site.publications | where: "category", category[0] %}
-    {% assign counter = pubs_in_cat | size %}
-
-    {% for post in pubs_in_cat reversed %}
-      {% include archive-single.html number=counter %}
-      {% assign counter = counter | minus: 1 %}
-    {% endfor %}
-
+  
+    {% if pubs_in_cat.size > 0 %}
+      <h2>{{ category[1].title }}</h2>
+      <hr />
+  
+      {% assign counter = pubs_in_cat | size %}
+  
+      {% for post in pubs_in_cat reversed %}
+        {% include archive-single.html number=counter %}
+        {% assign counter = counter | minus: 1 %}
+      {% endfor %}
+    {% endif %}
+  
   {% endfor %}
+
 
 {% else %}
 
