@@ -1,4 +1,3 @@
-
 ---
 title: "CubeSat Adaptive Attitude Control with Uncertain Drag Coefficient and Atmospheric Density"
 collection: publications
@@ -7,7 +6,7 @@ permalink: /publication/2021-aiaa-jgcd-1
 excerpt: ""
 date: 2020-04-26
 
-venue: "Acta Astronautica"
+venue: "Journal of Guidance, Control, and Dynamics"
 volume: "44"
 number: "2"
 pages: "379-388"
