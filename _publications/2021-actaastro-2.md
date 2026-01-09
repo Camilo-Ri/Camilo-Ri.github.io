@@ -14,7 +14,7 @@ pages: "439-450"
 authors:
   - Camilo Riano-Rios
   - Runhan Sun
-  - Riccardo Bavilacqua
+  - Riccardo Bevilacqua
   - Warren E. Dixon
 
 publication_type: "Journal paper"
