@@ -1,4 +1,3 @@
-
 ---
 title: "Approximate Optimal Orbit Transfer of Non-cooperative Debris"
 collection: publications
