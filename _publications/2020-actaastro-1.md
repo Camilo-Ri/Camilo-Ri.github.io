@@ -16,7 +16,7 @@ authors:
   - Riccardo Bevilacqua
   - Warren E. Dixon
 
-publication_type: "Conference paper"
+publication_type: "Journal paper"
 
 pdf: /files/2020-actaastro-1.pdf
 doi: 10.1016/j.actaastro.2020.04.059
