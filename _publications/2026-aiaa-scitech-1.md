@@ -4,7 +4,7 @@ collection: publications
 category: conferences
 permalink: /publication/2026-aiaa-scitech-1
 excerpt: ""
-date: 2020-01-05
+date: 2026-01-05
 
 venue: "AIAA SciTech Forum"
 location: "Orlando, FL, USA"
