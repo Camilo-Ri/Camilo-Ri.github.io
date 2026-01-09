@@ -11,7 +11,7 @@ location: "Ka’anapali, HI, USA"
 paper_number: "AAS 19-346"
 
 authors:
-  - Camilo A. Riano-Rios
+  - Camilo Riano-Rios
   - Riccardo Bevilacqua
   - Warren Dixon
 
@@ -24,7 +24,7 @@ arxiv:
 bibtex: |
   @inproceedings{2019rianorios,
     title     = {Relative Maneuvering for Multiple Spacecraft Via Differential Drag Using LQR and Constrained Least Squares},
-    author    = {Riano-Rios, Camilo A. and Bevilacqua, Riccardo and Dixon, Warren},
+    author    = {Riano-Rios, Camilo and Bevilacqua, Riccardo and Dixon, Warren},
     booktitle = {Proceedings of the AAS/AIAA Space Flight Mechanics Meeting},
     year      = {2019},
     address   = {Ka’anapali, HI, USA},
