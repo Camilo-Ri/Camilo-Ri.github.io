@@ -17,7 +17,7 @@ authors:
 
 publication_type: "Conference paper"
 
-pdf: /files/SfMM1.pdf
+pdf: /files/2019-aiaa-sfmm-1.pdf
 doi: #10.2514/6.2019-346
 arxiv: 
 
