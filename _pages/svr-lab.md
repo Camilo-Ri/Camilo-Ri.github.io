@@ -6,6 +6,12 @@ author_profile: true
 
 # The SVR lab @ Florida Tech
 
+<p align="center">
+  <img src="/images/SVR_logo.jpeg"
+       alt="SVR Lab Logo"
+       width="220">
+</p>
+
 The **SVR lab** specializes in the design, development and implementation of novel Guidance Navigation and Control (GNC) strategies for robots and space vehicles.
 
 Our research is focused on improving the reliability and robustness of critical GNC algorithms for space missions by applying nonlinear adaptive control, machine learning strategies or a combination of both. These robust algorithms are relevant for several applications in the growing space industry.
