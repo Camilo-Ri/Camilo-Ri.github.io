@@ -49,10 +49,80 @@ The SVR Lab conducts research in the following interconnected areas:
 - **Post-capture Attitude Control**
   - In the context of Space Situational Awareness applications, multiple strategies have been proposed to capture a non-cooperative object in orbit for a subsequent disposal. This project focus on the post-capture scenario where a small module equipped with Reaction Wheels (RW) and a 2 DOF propulsion system, is attached to a larger object. The new rigid body has uncertain physical parameters, making it difficult to maintain attitude due to RW saturation if the thrust vector is not correctly aligned. Adaptive control and/or machine learning techniques are explored to address this problem.
  
-- **Three-DoF Spacecraft Attitude Testbed
+- **Three-DoF Spacecraft Attitude Testbed**
   - This project will use Florida Tech’s Helmholtz cage and air bearing to design and build a satellite attitude testbed. The testbed will have an onboard Jetson nano computer, four reaction wheels and three magnetorquers. An attitude determination algorithm based on magnetometer and gyro measurements will be implemented, as well as a Lyapunov-based attitude controller. This testbed will serve as the last validation stage for SVR’s GNC algorithms.
 
 ---
 
+## Facilities and Equipment
+
+- **Workstations**
+  - Mac Studio (M2):   
+    - 12-core CPU
+    - 30-core GPU
+    - 16-core neural engine
+    - 64GB unified Memory
+      
+  - Linux/Windows Workstations
+    - Intel core i7/i9
+    - NVIDIA RTX 4060
+    - 16/32 GB memory
+   
+  - Workstations are remotely accessible and connected to a local network, enabling the development of distributed applications.
+ 
+  - We have access, through Florida Tech, to software:
+    - MATLAB
+    - STK
+    - LabVIEW
+    - PTC Creo
+    - etc.   
+
+- **Embedded Computers**
+  - Small computers to test flight software subject to the limitations imposed by small satellite on-board computers.
+    - Raspberry Pi 4 Model B
+    - NVIDIA Jetson Nano
+    - NVIDIA Jetson Orin Nano
+    - NVIDIA Jetson AGX
+   
+  - Computers are remotely accessible and connected to a local network, enabling the development of distributed applications
+ 
+- **Simulator**
+  - The team is currently developing a Simulink based satellite simulator with the modularity necessary to rapidly configure satellites with different GNC hardware configurations and capable of interacting with external hardware and/or software using the Robot Operating System (ROS2) framework. This simulator is suitable for:
+    - Model-In-the-Loop (MIL) simulations
+    - Software-In-the-Loop (SIL) simulations
+    - Hardware-In-the-Loop (HIL) simulations
+   
+- **Electronics**
+  - Stations with:
+    - Power supply
+    - Soldering station
+    - ESD mat  
+
+  - Oscilloscope
+ 
+  - Actuators:
+    - Brushless DC motors (Maxon)
+    - Motor drivers (Maxon)
+    - Linear actuators (Helix)
+    - Servo-motors
+
+  - Sensors:
+    - Inertial Measurement Units:
+      - Tactical grade (Analog Devices)
+      - ROS2-enabled (Olive Robotics)
+        
+    - Stereo Camera (Intel)
+    - (simulated) Star-Tracker Camera + Lens (Basler)
+    - CubeSat GPS (PiNAV)
+    - Software Defined Radio (Pluto - Analog Devices)
+   
+- **Access to**
+  - We have access to Florida Tech’s
+    - 2-meter Helmholtz cage
+    - Camera-based tracking system (OptiTrack - six cameras)
+    - Spherical air bearing (Physik Instrumente)
+    - AI.Panther high performance GPU/CPU cluster
+    - 3D printers
+    - etc.  
 
 
