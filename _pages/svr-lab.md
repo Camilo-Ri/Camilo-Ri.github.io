@@ -4,13 +4,13 @@ permalink: /svr-lab/
 author_profile: true
 ---
 
-# The SVR lab @ Florida Tech
-
 <p align="center">
   <img src="/images/SVR_logo.jpeg"
        alt="SVR Lab Logo"
-       width="220">
+       width="400">
 </p>
+
+# The SVR lab @ Florida Tech
 
 The **SVR lab** specializes in the design, development and implementation of novel Guidance Navigation and Control (GNC) strategies for robots and space vehicles.
 
