@@ -1,13 +1,16 @@
 ---
-title: "SVR Lab"
+title: "Space Vehicles and Robotics (SVR) Lab"
 permalink: /svr-lab/
 author_profile: true
 ---
 
-# Space Vehicles and Robotics Lab (SVR)
+# The SVR lab @ Florida Tech
 
-The **Space Vehicles and Robotics (SVR) Lab** focuses on the modeling, estimation, and control of complex aerospace and robotic systems, with an emphasis on autonomy, resilience, and real-world applicability.  
-Our work bridges theory and practice, combining rigorous analytical tools with simulation, software-in-the-loop, and experimental validation.
+The **SVR lab** specializes in the design, development and implementation of novel Guidance Navigation and Control (GNC) strategies for robots and space vehicles.
+
+Our research is focused on improving the reliability and robustness of critical GNC algorithms for space missions by applying nonlinear adaptive control, machine learning strategies or a combination of both. These robust algorithms are relevant for several applications in the growing space industry.
+
+Although the theoretical development is fundamental part of SVR lab’s research. We also believe that thorough on-ground testing of these algorithms using state-of-the-art testbeds is necessary. Therefore, we also work on designing and building testing equipment.
 
 ---
 
@@ -22,49 +25,34 @@ The SVR Lab conducts research in the following interconnected areas:
 
 - **Adaptive and Learning-Based Control**
   - Adaptive control for uncertain and time-varying systems
-  - Data-driven modeling and estimation
   - Integration of machine learning with control frameworks
+  - Data-driven modeling and estimation
 
 - **Fault Detection, Isolation, and Recovery (FDIR)**
   - Reaction wheel fault detection and health monitoring
-  - Resilient control architectures
   - Safe autonomy under component degradation
 
-- **Robotics and Autonomous Systems**
-  - Robotic motion planning and control
-  - Estimation and perception-driven control
-  - Cross-domain applications beyond aerospace
+- **On-ground Testing and Validation**
+  - MIL - SIL - HIL
+  - Simulated spacecraft attitude motion
+  
+---
+
+## Projects
+
+- **Improving Robustness to Actuator Failures/Degradation**
+  - This project considers a spacecraft equipped with a redundant reaction wheel array that over time loses performance of one or more of its main attitude control actuators. System identification algorithms, along with control allocation strategies are combined to maintain performance in the presence of degradation or actuator loss.
+
+- **Using Adaptive COntrol and Machine Learning to Estimate Drag-Related Parameters**
+  - This project considers a set of propelant-less spacecraft maneuvering with respect to an unknown object in the Low-Earth-Orbit by means of atmospheric drag. The agents use Integral Concurrent Learning for online estimation of atmospheric density and physical parameters of the unknown object. Although estimations are better than a-priori information, residual errors are present due to approximations in the dynamics. Machine learning techniques are explored to improve the estimation of these parameters given independent estimations from each agent.
+
+- **Post-capture Attitude Control**
+  - In the context of Space Situational Awareness applications, multiple strategies have been proposed to capture a non-cooperative object in orbit for a subsequent disposal. This project focus on the post-capture scenario where a small module equipped with Reaction Wheels (RW) and a 2 DOF propulsion system, is attached to a larger object. The new rigid body has uncertain physical parameters, making it difficult to maintain attitude due to RW saturation if the thrust vector is not correctly aligned. Adaptive control and/or machine learning techniques are explored to address this problem.
+ 
+- **Three-DoF Spacecraft Attitude Testbed
+  - This project will use Florida Tech’s Helmholtz cage and air bearing to design and build a satellite attitude testbed. The testbed will have an onboard Jetson nano computer, four reaction wheels and three magnetorquers. An attitude determination algorithm based on magnetometer and gyro measurements will be implemented, as well as a Lyapunov-based attitude controller. This testbed will serve as the last validation stage for SVR’s GNC algorithms.
 
 ---
 
-## Education and Student Involvement
 
-The SVR Lab is strongly committed to student education and mentorship.  
-Undergraduate and graduate students are actively involved in:
 
-- Research projects tied to real-world aerospace problems
-- Development of simulation and testing frameworks
-- Senior design and independent study projects
-- Conference and journal publications
-
-Students gain experience in **control theory, numerical methods, simulation, and software development**, preparing them for both academic and industry careers.
-
----
-
-## Funding and Collaborations
-
-Research conducted in the SVR Lab is supported by a combination of institutional resources and external funding, and benefits from collaborations with academic and government research partners.
-
----
-
-## Media Gallery (Coming Soon)
-
-### Figures and Images
-<!-- Placeholder for future figures -->
-> *Figures illustrating spacecraft configurations, control architectures, and simulation results will be added here.*
-
-```html
-<!-- Example image block (to use later) -->
-<!--
-<img src="/images/svr-example-figure.png" alt="SVR Lab research example" width="600">
--->
