@@ -1,4 +1,5 @@
 ---
+layout: archive
 title: "Space Vehicles and Robotics (SVR) Lab"
 permalink: /svr-lab/
 author_profile: true
