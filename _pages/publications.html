@@ -6,33 +6,86 @@ author_profile: true
 robots: "noindex,follow"
 ---
 
-{% if site.author.googlescholar %}
-You can also find my articles on [my Google Scholar profile]({{ site.author.googlescholar }}).
-{% endif %}
-
 {% include base_path %}
+
+<!-- Simple client-side search (keeps archive look + numbering + sections) -->
+<div style="margin: 0.75rem 0 1.25rem 0;">
+  <label for="pubSearch" style="display:block; font-weight:600; margin-bottom:0.25rem;">
+    Search
+  </label>
+  <input
+    id="pubSearch"
+    type="text"
+    placeholder="Type to filter by title/authors/venue..."
+    style="width:100%; max-width: 720px; padding:0.55rem 0.6rem; border:1px solid rgba(0,0,0,.15); border-radius:8px;"
+    autocomplete="off"
+  />
+</div>
+
+<script>
+  // Filters publication entries by text content (title/authors/venue/etc).
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('pubSearch');
+    if (!input) return;
+
+    // We tag each item wrapper with .pub-entry (added below).
+    const items = Array.from(document.querySelectorAll('.pub-entry'));
+
+    function norm(s){ return (s || '').toLowerCase().replace(/\s+/g,' ').trim(); }
+
+    input.addEventListener('input', function () {
+      const q = norm(input.value);
+      items.forEach(el => {
+        const hay = norm(el.textContent);
+        el.style.display = (!q || hay.includes(q)) ? '' : 'none';
+      });
+
+      // Hide empty sections after filtering
+      document.querySelectorAll('.pub-section').forEach(sec => {
+        const anyVisible = Array.from(sec.querySelectorAll('.pub-entry'))
+          .some(el => el.style.display !== 'none');
+        sec.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+{% assign pubs_all = site.publications | sort: "date" | reverse %}
 
 {% if site.publication_category %}
   {% for category in site.publication_category %}
-    {% assign pubs_in_cat = site.publications | where: "category", category[0] %}
-    {% if pubs_in_cat.size > 0 %}
 
-## {{ category[1].title }}
+    {% assign cat_key = category[0] %}
+    {% assign cat_title = category[1].title %}
+    {% assign pubs_in_cat = pubs_all | where: "category", cat_key %}
+
+    {% if pubs_in_cat.size > 0 %}
+<section class="pub-section">
+## {{ cat_title }}
 
 * * *
 
       {% assign counter = pubs_in_cat | size %}
       {% for post in pubs_in_cat reversed %}
-        {% include archive-single.html number=counter %}
+        <div class="pub-entry">
+          {% include archive-single.html number=counter %}
+        </div>
         {% assign counter = counter | minus: 1 %}
       {% endfor %}
-
+</section>
     {% endif %}
+
   {% endfor %}
 {% else %}
-  {% assign counter = site.publications | size %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html number=counter %}
+
+<section class="pub-section">
+  {% assign counter = pubs_all | size %}
+  {% for post in pubs_all reversed %}
+    <div class="pub-entry">
+      {% include archive-single.html number=counter %}
+    </div>
     {% assign counter = counter | minus: 1 %}
   {% endfor %}
+</section>
+
 {% endif %}
