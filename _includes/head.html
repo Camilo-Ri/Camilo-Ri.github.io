@@ -1,42 +1,61 @@
 {% include base_path %}
+
+<meta charset="utf-8">
+
 {% include seo.html %}
 
-{%- if page.robots -%}
+<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" 
+      type="application/atom+xml" 
+      rel="alternate" 
+      title="{{ site.title }} Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className =
+    document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
+  
+{% if page.robots %}
 <meta name="robots" content="{{ page.robots }}">
 <meta name="googlebot" content="{{ page.robots }}">
-{%- endif -%}
+{% endif %}
 
-{%- if page.collection == "publications" -%}
-  <meta name="citation_title" content="{{ page.title | strip_html | strip_newlines | escape }}">
-  {%- if page.authors -%}
-    {%- for a in page.authors -%}
-      <meta name="citation_author" content="{{ a | strip | escape }}">
-    {%- endfor -%}
-  {%- endif -%}
+{% if page.collection == "publications" %}
+  <meta name="citation_title"
+        content="{{ page.title | strip_html | strip_newlines | escape }}">
 
-  {%- if page.date -%}
-    <meta name="citation_publication_date" content="{{ page.date | date: '%Y/%m/%d' }}">
-  {%- endif -%}
+  {% if page.authors %}
+    {% for a in page.authors %}
+      <meta name="citation_author"
+            content="{{ a | strip | escape }}">
+    {% endfor %}
+  {% endif %}
 
-  {%- if page.venue -%}
-    <meta name="citation_journal_title" content="{{ page.venue | strip_html | strip_newlines | escape }}">
-  {%- endif -%}
+  {% if page.date %}
+    <meta name="citation_publication_date"
+          content="{{ page.date | date: '%Y/%m/%d' }}">
+  {% endif %}
 
-  {%- comment -%}
-  Prefer page.pdf (your schema), otherwise fall back to paperurl.
-  Use absolute URL (site.url is set to https://camilori.com).
-  {%- endcomment -%}
-  {%- if page.pdf and page.pdf != "" -%}
-    <meta name="citation_pdf_url" content="{{ site.url }}{{ page.pdf }}">
-  {%- elsif page.paperurl and page.paperurl != "" -%}
-    <meta name="citation_pdf_url" content="{{ page.paperurl | replace: 'http://', 'https://' }}">
-  {%- endif -%}
+  {% if page.venue %}
+    <meta name="citation_journal_title"
+          content="{{ page.venue | strip_html | strip_newlines | escape }}">
+  {% endif %}
 
-  {%- if page.doi and page.doi != "" -%}
-    <meta name="citation_doi" content="{{ page.doi | strip | escape }}">
-  {%- endif -%}
+  {% if page.pdf and page.pdf != "" %}
+    <meta name="citation_pdf_url"
+          content="{{ site.url }}{{ page.pdf }}">
+  {% endif %}
 
-  {%- if page.arxiv and page.arxiv != "" -%}
-    <meta name="citation_arxiv_id" content="{{ page.arxiv | strip | escape }}">
-  {%- endif -%}
-{%- endif -%}
+  {% if page.doi and page.doi != "" %}
+    <meta name="citation_doi"
+          content="{{ page.doi | strip | escape }}">
+  {% endif %}
+
+  {% if page.arxiv and page.arxiv != "" %}
+    <meta name="citation_arxiv_id"
+          content="{{ page.arxiv | strip | escape }}">
+  {% endif %}
+{% endif %}
