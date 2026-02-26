@@ -2,478 +2,349 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
+author_profile: true
+robots: "noindex,follow"
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* Minimal styling that blends with AcademicPages */
+  .pub-controls{
+    margin: 1rem 0 1.25rem 0;
+    padding: .9rem;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(0,0,0,.03);
+    border-radius: 10px;
+    display: grid;
+    gap: .75rem;
+  }
+  .pub-controls-row{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .65rem;
+  }
+  @media (min-width: 760px){
+    .pub-controls-row{ grid-template-columns: 1.2fr .7fr .6fr; align-items: end; }
+  }
+  .field label{
+    display:block;
+    font-size:.92rem;
+    opacity:.8;
+    margin-bottom:.25rem;
+  }
+  .field input, .field select{
+    width:100%;
+    padding:.55rem .6rem;
+    border:1px solid rgba(0,0,0,.15);
+    border-radius:8px;
+    background:#fff;
+    font-size:.95rem;
+  }
+  .pub-stats{
+    display:flex;
+    gap:.6rem;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .pub-stats .count{ opacity:.8; font-size:.95rem; }
+  .pub-stats .btns{ display:flex; gap:.5rem; flex-wrap:wrap; }
+  .pub-controls button{
+    padding:.45rem .7rem;
+    border:1px solid rgba(0,0,0,.15);
+    border-radius:8px;
+    background:#fff;
+    font-size:.92rem;
+    cursor:pointer;
+  }
 
-  <!-- IMPORTANT: Prevent Google Scholar from treating this aggregated list page as a “paper source”.
-       Still allow crawling of individual publication pages and PDFs via links. -->
-  <meta name="robots" content="noindex,follow" />
-  <meta name="googlebot" content="noindex,follow" />
+  section.pub-section { margin-top: 1.35rem; }
+  section.pub-section h2 { margin-bottom: .25rem; }
+  section.pub-section hr { margin-top: .25rem; }
 
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  ol.pub-list { margin-top: .75rem; }
 
-  <style>
-    :root {
-      --pub-border: rgba(0,0,0,0.12);
-      --pub-muted: rgba(0,0,0,0.68);
-      --pub-bg: rgba(0,0,0,0.03);
-      --pub-pill: rgba(0,0,0,0.06);
-    }
+  details.pub-bib{
+    margin-top: .55rem;
+    border-left: 4px solid rgba(0,0,0,.15);
+    background: rgba(0,0,0,.03);
+    padding: .55rem .7rem;
+    border-radius: 10px;
+  }
+  details.pub-bib > summary{ cursor:pointer; font-weight:600; }
 
-    body { line-height: 1.45; }
-    header { margin: 1.2rem 0 0.8rem 0; }
-    header h1 { margin: 0 0 0.25rem 0; }
-    header p { margin: 0; color: var(--pub-muted); }
+  pre.pub-pre{
+    margin:.6rem 0 .45rem 0;
+    padding:.65rem;
+    background: rgba(0,0,0,.06);
+    border-radius: 8px;
+    overflow:auto;
+    font-size:.88rem;
+    border:1px solid rgba(0,0,0,.12);
+    white-space: pre;
+  }
+  .copy-row{ display:flex; justify-content:flex-end; gap:.5rem; flex-wrap:wrap; }
+  .copy-row button{ padding:.35rem .6rem; font-size:.9rem; }
 
-    .pub-controls {
-      margin: 1rem 0 1.2rem 0;
-      padding: 0.9rem;
-      border: 1px solid var(--pub-border);
-      background: var(--pub-bg);
-      border-radius: 10px;
-      display: grid;
-      gap: 0.75rem;
-    }
+  .pub-links a{
+    text-decoration:none;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 999px;
+    padding: .1rem .55rem;
+    font-size: .85rem;
+    margin-right: .35rem;
+    display: inline-block;
+    margin-top: .3rem;
+  }
+  .pub-links a:hover{ text-decoration: underline; }
 
-    .pub-controls-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.65rem;
-    }
+  .toast{
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,.88);
+    color: #fff;
+    padding: .6rem .75rem;
+    border-radius: 10px;
+    font-size: .92rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+    z-index: 9999;
+    max-width: calc(100vw - 24px);
+    text-align:center;
+  }
+  .toast.show{ opacity: 1; }
 
-    @media (min-width: 760px) {
-      .pub-controls-row {
-        grid-template-columns: 1.2fr 0.8fr 0.6fr;
-        align-items: end;
-      }
-    }
+  /* hide empty sections after filtering */
+  .pub-section[data-hidden="1"]{ display:none; }
+</style>
 
-    .field label {
-      display: block;
-      font-size: 0.9rem;
-      color: var(--pub-muted);
-      margin-bottom: 0.25rem;
-    }
-    .field input, .field select {
-      width: 100%;
-      padding: 0.55rem 0.6rem;
-      border: 1px solid var(--pub-border);
-      border-radius: 8px;
-      background: white;
-      font-size: 0.95rem;
-    }
+<section class="pub-controls" aria-label="Publication controls">
+  <div class="pub-controls-row">
+    <div class="field">
+      <label for="q">Search (title, authors, venue)</label>
+      <input id="q" type="text" placeholder="e.g., adaptive, reaction wheel, concurrent learning..." autocomplete="off" />
+    </div>
 
-    .pub-stats {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .pub-stats .count {
-      color: var(--pub-muted);
-      font-size: 0.95rem;
-    }
-    .pub-stats .btns {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+    <div class="field">
+      <label for="sec">Section</label>
+      <select id="sec">
+        <option value="__all__">All</option>
+        <option value="wip">Work in Progress / Under Review</option>
+        <option value="journal">Journal Articles</option>
+        <option value="conference">Conference Papers</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
 
-    button {
-      padding: 0.45rem 0.7rem;
-      border: 1px solid var(--pub-border);
-      border-radius: 8px;
-      background: white;
-      font-size: 0.92rem;
-      cursor: pointer;
-    }
-    button:hover { filter: brightness(0.98); }
-    button:active { transform: translateY(1px); }
+    <div class="field">
+      <label for="yr">Year</label>
+      <select id="yr">
+        <option value="__all__">All</option>
+      </select>
+    </div>
+  </div>
 
-    .pub-list { margin: 0; padding: 0; list-style: none; }
-    .pub-item {
-      border: 1px solid var(--pub-border);
-      border-radius: 12px;
-      padding: 0.9rem 0.95rem;
-      margin-bottom: 0.85rem;
-      background: white;
-    }
+  <div class="pub-stats">
+    <div class="count" id="count"></div>
+    <div class="btns">
+      <button type="button" id="expandAll">Expand all BibTeX</button>
+      <button type="button" id="collapseAll">Collapse all BibTeX</button>
+      <button type="button" id="reset">Reset</button>
+    </div>
+  </div>
+</section>
 
-    .pub-topline {
-      display: flex;
-      gap: 0.6rem;
-      align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+<div id="sections"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    .pub-title {
-      font-weight: 700;
-      margin: 0;
-      font-size: 1.02rem;
-    }
-    .pub-title a { text-decoration: none; }
-    .pub-title a:hover { text-decoration: underline; }
+{%- assign pubs_all = site.publications | sort: "date" | reverse -%}
 
-    .pub-year {
-      color: var(--pub-muted);
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
+<script>
+  const PUBS = [
+    {% for p in pubs_all %}
+    {
+      title: {{ p.title | jsonify }},
+      permalink: {{ p.url | relative_url | jsonify }},
+      year: {{ p.date | date: "%Y" | jsonify }},
+      date: {{ p.date | date: "%Y-%m-%d" | jsonify }},
+      category: {{ p.category | default: "other" | jsonify }},
+      venue: {{ p.venue | default: "" | jsonify }},
+      publication_type: {{ p.publication_type | default: "" | jsonify }},
+      authors: {{ p.authors | join: ", " | jsonify }},
+      pdf: {{ p.pdf | default: "" | jsonify }},
+      doi: {{ p.doi | default: "" | jsonify }},
+      arxiv: {{ p.arxiv | default: "" | jsonify }},
+      bibtex: {{ p.bibtex | default: "" | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
 
-    .pub-authors {
-      margin-top: 0.35rem;
-      color: rgba(0,0,0,0.82);
-    }
-    .pub-authors .label {
-      color: var(--pub-muted);
-    }
+  const SECTION_TITLES = {
+    wip: "Work in Progress / Under Review",
+    journal: "Journal Articles",
+    conference: "Conference Papers",
+    other: "Other"
+  };
+  const SECTION_ORDER = ["wip", "journal", "conference", "other"];
 
-    .pub-venue {
-      margin-top: 0.25rem;
-      color: var(--pub-muted);
-    }
+  const els = {
+    q: document.getElementById('q'),
+    sec: document.getElementById('sec'),
+    yr: document.getElementById('yr'),
+    sections: document.getElementById('sections'),
+    count: document.getElementById('count'),
+    expandAll: document.getElementById('expandAll'),
+    collapseAll: document.getElementById('collapseAll'),
+    reset: document.getElementById('reset'),
+    toast: document.getElementById('toast'),
+  };
 
-    .pub-tags {
-      margin-top: 0.55rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      align-items: center;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.16rem 0.55rem;
-      border-radius: 999px;
-      background: var(--pub-pill);
-      color: rgba(0,0,0,0.75);
-      font-size: 0.82rem;
-      border: 1px solid var(--pub-border);
-    }
-    .pill a { text-decoration: none; }
-    .pill a:hover { text-decoration: underline; }
+  function toast(msg){
+    els.toast.textContent = msg;
+    els.toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => els.toast.classList.remove('show'), 1400);
+  }
 
-    details {
-      margin-top: 0.75rem;
-      border-left: 4px solid rgba(0,0,0,0.18);
-      background: var(--pub-bg);
-      padding: 0.55rem 0.7rem;
-      border-radius: 10px;
-    }
-    details > summary {
-      cursor: pointer;
-      font-weight: 600;
-      color: rgba(0,0,0,0.85);
-      outline: none;
-    }
-    pre {
-      margin: 0.6rem 0 0.4rem 0;
-      padding: 0.65rem;
-      background: rgba(0,0,0,0.06);
-      border-radius: 8px;
-      overflow: auto;
-      font-size: 0.88rem;
-      border: 1px solid var(--pub-border);
-      white-space: pre;
-    }
+  function norm(s){
+    return (s || '').toString().toLowerCase().replace(/\s+/g,' ').trim();
+  }
+  function unique(arr){
+    return Array.from(new Set(arr.filter(Boolean)));
+  }
 
-    .copy-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+  function buildYearFilter(){
+    const years = unique(PUBS.map(p => p.year)).sort((a,b) => Number(b) - Number(a));
+    years.forEach(y => {
+      const opt = document.createElement('option');
+      opt.value = String(y);
+      opt.textContent = String(y);
+      els.yr.appendChild(opt);
+    });
+  }
 
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.88);
-      color: white;
-      padding: 0.6rem 0.75rem;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 160ms ease;
-      z-index: 9999;
-      max-width: calc(100vw - 24px);
-      text-align: center;
-    }
-    .toast.show { opacity: 1; }
-  </style>
-</head>
+  function matches(pub){
+    const q = norm(els.q.value);
+    const sec = els.sec.value;
+    const yr = els.yr.value;
 
-<body>
-  <header class="container">
-    <h1>{{ page.title }}</h1>
-    <p>Search, filter, and copy BibTeX. (This page is intentionally <em>not indexed</em> so Google Scholar doesn’t mis-attribute authors.)</p>
-  </header>
+    if (sec !== '__all__' && pub.category !== sec) return false;
+    if (yr !== '__all__' && String(pub.year) !== yr) return false;
 
-  <main class="container">
-    <section class="pub-controls" aria-label="Publication controls">
-      <div class="pub-controls-row">
-        <div class="field">
-          <label for="q">Search (title, authors, venue)</label>
-          <input id="q" type="text" placeholder="e.g., adaptive, reaction wheel, concurrent learning..." autocomplete="off" />
-        </div>
+    if (!q) return true;
 
-        <div class="field">
-          <label for="type">Category / Type</label>
-          <select id="type">
-            <option value="__all__">All</option>
-            <!-- populated by JS from data -->
-          </select>
-        </div>
+    const hay = norm([pub.title, pub.authors, pub.venue, pub.publication_type].join(' | '));
+    return hay.includes(q);
+  }
 
-        <div class="field">
-          <label for="year">Year</label>
-          <select id="year">
-            <option value="__all__">All</option>
-            <!-- populated by JS from data -->
-          </select>
-        </div>
-      </div>
+  function linkForDoi(doi){
+    if (!doi) return "";
+    return doi.startsWith("http") ? doi : `https://doi.org/${doi}`;
+  }
+  function linkForArxiv(arxiv){
+    if (!arxiv) return "";
+    return arxiv.startsWith("http") ? arxiv : `https://arxiv.org/abs/${arxiv}`;
+  }
 
-      <div class="pub-stats">
-        <div class="count" id="count"></div>
-        <div class="btns">
-          <button type="button" id="expandAll">Expand all BibTeX</button>
-          <button type="button" id="collapseAll">Collapse all BibTeX</button>
-          <button type="button" id="reset">Reset filters</button>
-        </div>
-      </div>
-    </section>
+  function render(){
+    const filtered = PUBS.filter(matches);
+    els.count.textContent = `${filtered.length} / ${PUBS.length} shown`;
 
-    <ul class="pub-list" id="pubList"></ul>
-  </main>
+    // group by category
+    const groups = {};
+    SECTION_ORDER.forEach(k => groups[k] = []);
+    filtered.forEach(p => (groups[p.category] ||= []).push(p));
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    els.sections.innerHTML = '';
 
-  <script>
-    // Data source: site.data.publications (your current setup)
-    // NOTE: This content is visible to users, but the page itself is noindex to avoid Scholar parsing issues.
-    const PUBS = {{ site.data.publications | sort: "year" | reverse | jsonify }};
+    SECTION_ORDER.forEach(cat => {
+      const items = groups[cat] || [];
 
-    const els = {
-      q: document.getElementById('q'),
-      type: document.getElementById('type'),
-      year: document.getElementById('year'),
-      list: document.getElementById('pubList'),
-      count: document.getElementById('count'),
-      expandAll: document.getElementById('expandAll'),
-      collapseAll: document.getElementById('collapseAll'),
-      reset: document.getElementById('reset'),
-      toast: document.getElementById('toast'),
-    };
+      const section = document.createElement('section');
+      section.className = 'pub-section';
+      section.dataset.cat = cat;
 
-    function toast(msg) {
-      els.toast.textContent = msg;
-      els.toast.classList.add('show');
-      clearTimeout(toast._t);
-      toast._t = setTimeout(() => els.toast.classList.remove('show'), 1400);
-    }
+      if (items.length === 0) section.dataset.hidden = "1";
 
-    function norm(s) {
-      return (s || '').toString().toLowerCase().replace(/\s+/g, ' ').trim();
-    }
+      const h2 = document.createElement('h2');
+      h2.textContent = SECTION_TITLES[cat] || cat;
+      section.appendChild(h2);
 
-    function unique(arr) {
-      return Array.from(new Set(arr.filter(Boolean)));
-    }
+      const hr = document.createElement('hr');
+      section.appendChild(hr);
 
-    function guessType(pub) {
-      // Customize if your data has explicit fields like pub.category / pub.publication_type
-      // Fall back in this order:
-      return pub.publication_type || pub.category || pub.type || pub.venue || 'Other';
-    }
+      const ol = document.createElement('ol');
+      ol.className = 'pub-list';
 
-    function safeLink(href) {
-      if (!href) return null;
-      // Allow absolute URLs or site-relative paths
-      return href;
-    }
-
-    function buildFilters() {
-      const years = unique(PUBS.map(p => p.year)).sort((a,b) => (b||0) - (a||0));
-      const types = unique(PUBS.map(p => guessType(p))).sort((a,b) => a.localeCompare(b));
-
-      for (const y of years) {
-        const opt = document.createElement('option');
-        opt.value = String(y);
-        opt.textContent = String(y);
-        els.year.appendChild(opt);
-      }
-
-      for (const t of types) {
-        const opt = document.createElement('option');
-        opt.value = t;
-        opt.textContent = t;
-        els.type.appendChild(opt);
-      }
-    }
-
-    function matches(pub) {
-      const q = norm(els.q.value);
-      const type = els.type.value;
-      const year = els.year.value;
-
-      if (type !== '__all__' && guessType(pub) !== type) return false;
-      if (year !== '__all__' && String(pub.year) !== year) return false;
-
-      if (!q) return true;
-
-      const hay = norm([
-        pub.title,
-        pub.authors,
-        pub.venue,
-        pub.journal,
-        pub.conference,
-        pub.keywords
-      ].filter(Boolean).join(' | '));
-
-      return hay.includes(q);
-    }
-
-    function render() {
-      const filtered = PUBS.filter(matches);
-      els.list.innerHTML = '';
-
-      els.count.textContent = `${filtered.length} / ${PUBS.length} shown`;
-
-      filtered.forEach((pub, idx) => {
+      items.forEach((pub, idx) => {
         const li = document.createElement('li');
-        li.className = 'pub-item';
 
-        const title = pub.title || 'Untitled';
-        const year = pub.year || '';
-        const authors = pub.authors || '';
-        const venue = pub.venue || pub.journal || pub.conference || '';
+        // Title (links to details page)
+        const title = document.createElement('strong');
+        const a = document.createElement('a');
+        a.href = pub.permalink;
+        a.textContent = pub.title || "Untitled";
+        title.appendChild(a);
+        li.appendChild(title);
 
-        // Links (optional fields you might have in your data file)
-        // If you have per-paper pages, add pub.url or pub.permalink in your data.
-        const paperPage = safeLink(pub.url || pub.permalink || pub.page || '');
-        const pdf = safeLink(pub.pdf || pub.paper || pub.paperurl || '');
-        const doi = safeLink(pub.doi ? (pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`) : '');
-        const arxiv = safeLink(pub.arxiv ? (pub.arxiv.startsWith('http') ? pub.arxiv : `https://arxiv.org/abs/${pub.arxiv}`) : '');
+        // Authors
+        const authors = document.createElement('div');
+        authors.style.marginTop = ".2rem";
+        authors.innerHTML = pub.authors ? pub.authors : "";
+        li.appendChild(authors);
 
-        const topLine = document.createElement('div');
-        topLine.className = 'pub-topline';
+        // Venue + year
+        const venueLine = [];
+        if (pub.venue) venueLine.push(pub.venue);
+        if (pub.publication_type) venueLine.push(pub.publication_type);
+        const v = document.createElement('div');
+        v.style.opacity = ".85";
+        v.style.marginTop = ".15rem";
+        v.innerHTML = (venueLine.length ? `<em>${venueLine.join(" — ")}</em>` : "") + (pub.year ? `, ${pub.year}` : "");
+        li.appendChild(v);
 
-        const h = document.createElement('h2');
-        h.className = 'pub-title';
+        // Links
+        const links = document.createElement('div');
+        links.className = 'pub-links';
 
-        if (paperPage) {
-          const a = document.createElement('a');
-          a.href = paperPage;
-          a.textContent = title;
-          h.appendChild(a);
-        } else {
-          h.textContent = title;
+        if (pub.pdf){
+          const l = document.createElement('a');
+          l.href = pub.pdf;
+          l.textContent = 'PDF';
+          l.rel = 'noopener';
+          links.appendChild(l);
+        }
+        if (pub.arxiv){
+          const l = document.createElement('a');
+          l.href = linkForArxiv(pub.arxiv);
+          l.textContent = 'arXiv';
+          l.rel = 'noopener';
+          links.appendChild(l);
+        }
+        if (pub.doi){
+          const l = document.createElement('a');
+          l.href = linkForDoi(pub.doi);
+          l.textContent = 'DOI';
+          l.rel = 'noopener';
+          links.appendChild(l);
         }
 
-        const y = document.createElement('div');
-        y.className = 'pub-year';
-        y.textContent = year ? String(year) : '';
+        if (links.childNodes.length) li.appendChild(links);
 
-        topLine.appendChild(h);
-        topLine.appendChild(y);
-        li.appendChild(topLine);
-
-        if (authors) {
-          const auth = document.createElement('div');
-          auth.className = 'pub-authors';
-          auth.innerHTML = `<span class="label">Authors:</span> ${authors}`;
-          li.appendChild(auth);
-        }
-
-        if (venue) {
-          const v = document.createElement('div');
-          v.className = 'pub-venue';
-          v.textContent = venue;
-          li.appendChild(v);
-        }
-
-        // Pills / quick links
-        const tags = document.createElement('div');
-        tags.className = 'pub-tags';
-
-        const t = guessType(pub);
-        if (t) {
-          const pill = document.createElement('span');
-          pill.className = 'pill';
-          pill.textContent = t;
-          tags.appendChild(pill);
-        }
-
-        if (pdf) {
-          const pill = document.createElement('span');
-          pill.className = 'pill';
-          const a = document.createElement('a');
-          a.href = pdf;
-          a.textContent = 'PDF';
-          a.rel = 'noopener';
-          pill.appendChild(a);
-          tags.appendChild(pill);
-        }
-
-        if (doi) {
-          const pill = document.createElement('span');
-          pill.className = 'pill';
-          const a = document.createElement('a');
-          a.href = doi;
-          a.textContent = 'DOI';
-          a.rel = 'noopener';
-          pill.appendChild(a);
-          tags.appendChild(pill);
-        }
-
-        if (arxiv) {
-          const pill = document.createElement('span');
-          pill.className = 'pill';
-          const a = document.createElement('a');
-          a.href = arxiv;
-          a.textContent = 'arXiv';
-          a.rel = 'noopener';
-          pill.appendChild(a);
-          tags.appendChild(pill);
-        }
-
-        if (paperPage) {
-          const pill = document.createElement('span');
-          pill.className = 'pill';
-          const a = document.createElement('a');
-          a.href = paperPage;
-          a.textContent = 'Details';
-          pill.appendChild(a);
-          tags.appendChild(pill);
-        }
-
-        if (tags.childNodes.length) li.appendChild(tags);
-
-        // BibTeX (keep your functionality)
-        if (pub.bibtex) {
+        // BibTeX
+        if (pub.bibtex){
           const details = document.createElement('details');
-          details.dataset.bib = '1';
+          details.className = 'pub-bib';
+          details.dataset.bib = "1";
 
           const summary = document.createElement('summary');
-          summary.textContent = 'Show BibTeX';
+          summary.textContent = "Show BibTeX";
           details.appendChild(summary);
 
           const pre = document.createElement('pre');
-          const preId = `bib-${idx}`;
-          pre.id = preId;
+          pre.className = 'pub-pre';
           pre.textContent = pub.bibtex;
           details.appendChild(pre);
 
@@ -484,58 +355,50 @@ permalink: /publications/
           btn.type = 'button';
           btn.textContent = 'Copy BibTeX';
           btn.addEventListener('click', async () => {
-            try {
+            try{
               await navigator.clipboard.writeText(pub.bibtex);
               toast('BibTeX copied!');
-            } catch (e) {
-              // fallback
+            }catch(e){
               const ta = document.createElement('textarea');
               ta.value = pub.bibtex;
               document.body.appendChild(ta);
               ta.select();
-              try {
-                document.execCommand('copy');
-                toast('BibTeX copied!');
-              } catch (_) {
-                toast('Copy failed. Please copy manually.');
-              }
+              try { document.execCommand('copy'); toast('BibTeX copied!'); }
+              catch(_) { toast('Copy failed. Please copy manually.'); }
               document.body.removeChild(ta);
             }
           });
 
           row.appendChild(btn);
           details.appendChild(row);
-
           li.appendChild(details);
         }
 
-        els.list.appendChild(li);
+        ol.appendChild(li);
       });
-    }
 
-    function setAllDetails(open) {
-      document.querySelectorAll('details[data-bib="1"]').forEach(d => d.open = open);
-    }
+      section.appendChild(ol);
+      els.sections.appendChild(section);
+    });
+  }
 
-    function resetFilters() {
-      els.q.value = '';
-      els.type.value = '__all__';
-      els.year.value = '__all__';
-      render();
-    }
-
-    // Init
-    buildFilters();
+  function setAllBib(open){
+    document.querySelectorAll('details[data-bib="1"]').forEach(d => d.open = open);
+  }
+  function reset(){
+    els.q.value = '';
+    els.sec.value = '__all__';
+    els.yr.value = '__all__';
     render();
+  }
 
-    // Events
-    els.q.addEventListener('input', () => render());
-    els.type.addEventListener('change', () => render());
-    els.year.addEventListener('change', () => render());
+  buildYearFilter();
+  render();
 
-    els.expandAll.addEventListener('click', () => setAllDetails(true));
-    els.collapseAll.addEventListener('click', () => setAllDetails(false));
-    els.reset.addEventListener('click', () => resetFilters());
-  </script>
-</body>
-</html>
+  els.q.addEventListener('input', render);
+  els.sec.addEventListener('change', render);
+  els.yr.addEventListener('change', render);
+  els.expandAll.addEventListener('click', () => setAllBib(true));
+  els.collapseAll.addEventListener('click', () => setAllBib(false));
+  els.reset.addEventListener('click', reset);
+</script>
