@@ -12,52 +12,146 @@
   {% assign title = post.title %}
 {% endif %}
 
-## {% if include.number %} {{ include.number }}. {% endif %}
-{% if post.pdf %}
-  [{{ title }}]({{ post.url | relative_url }})
-{% elsif post.paperurl %}
-  [{{ title }}]({{ post.paperurl }})
-{% elsif post.link %}
-  [{{ title }}]({{ post.link }})
-{% else %}
-  [{{ title }}]({{ post.url | relative_url }})
-{% endif %}
+<div class="archive__item">
 
-{% if post.read_time %}
-  {% include read-time.html %}
-{% endif %}
+  <!-- TITLE -->
+  <p class="archive__item-title" style="margin-bottom:0.25rem;">
 
-{% if post.collection == 'teaching' %}
-  {{ post.type }}, {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}
-{% elsif post.collection == 'publications' %}
+    {% if include.number %}
+      <strong>{{ include.number }}.</strong>
+    {% endif %}
 
-{% if post.authors %}
-Authors: {{ post.authors | join: ", " }}
-{% endif %}
+    {% if post.pdf %}
+      <a href="{{ post.url | relative_url }}">{{ title }}</a>
+    {% elsif post.paperurl %}
+      <a href="{{ post.paperurl }}">{{ title }}</a>
+    {% elsif post.link %}
+      <a href="{{ post.link }}">{{ title }}</a>
+    {% else %}
+      <a href="{{ post.url | relative_url }}">{{ title }}</a>
+    {% endif %}
 
-In {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}
+  </p>
 
-{% if post.doi %}
-[View on Publisher Site (DOI)](https://doi.org/{{ post.doi }})
-{% endif %}
 
-{% if post.bibtex %}
-<details class="pub-bib">
-  <summary>Show BibTeX</summary>
-  <pre id="bib-{{ post.url | slugify }}" class="pub-pre">{{ post.bibtex }}</pre>
-  <div class="copy-row">
-    <button type="button" class="pub-copy-btn" data-bib-id="bib-{{ post.url | slugify }}">Copy BibTeX</button>
-  </div>
-</details>
-{% endif %}
+  <!-- PUBLICATIONS FORMAT -->
+  {% if post.collection == 'publications' %}
 
-{% elsif post.date %}
-{{ site.data.ui-text[site.locale].date_label | default: "Published:" }}
-{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}
-{% endif %}
+    {% if post.authors %}
+      <div class="archive__item-excerpt">
+        {{ post.authors | join: ", " }}
+      </div>
+    {% endif %}
 
-{% if post.excerpt and site.read_more != 'enabled' %}
-{{ post.excerpt | markdownify }}
-{% elsif post.excerpt and site.read_more == 'enabled' %}
-{{ post.excerpt | markdownify | remove: '\n' | remove: '\r' }}[ Read more]({{ post.url | relative_url }})
-{% endif %}
+    <div class="archive__item-excerpt">
+
+      {% if post.venue %}
+        <em>{{ post.venue }}</em>
+      {% endif %}
+
+      {% if post.date %}
+        , {{ post.date | date: "%Y" }}
+      {% endif %}
+
+      {% if post.volume and post.volume != "" %}
+        , Vol. {{ post.volume }}
+      {% endif %}
+
+      {% if post.number and post.number != "" %}
+        ({{ post.number }})
+      {% endif %}
+
+      {% if post.pages and post.pages != "" %}
+        , pp. {{ post.pages }}
+      {% endif %}
+
+    </div>
+
+
+    <!-- DOI -->
+    {% if post.doi and post.doi != "" %}
+      <div class="archive__item-excerpt" style="margin-top:.15rem;">
+        <a href="https://doi.org/{{ post.doi }}" target="_blank">View via DOI</a>
+      </div>
+    {% endif %}
+
+
+    <!-- BIBTEX -->
+    {% if post.bibtex and post.bibtex != "" %}
+
+      <details class="pub-bib"
+               style="margin-top:.55rem;
+                      padding:.55rem .7rem;
+                      border-left:4px solid rgba(0,0,0,.15);
+                      background: rgba(0,0,0,.03);
+                      border-radius:10px;">
+
+        <summary style="cursor:pointer; font-weight:600;">
+          Show BibTeX
+        </summary>
+
+        <pre id="bib-{{ post.url | slugify }}"
+             class="pub-pre"
+             style="margin:.6rem 0 .45rem 0;
+                    padding:.65rem;
+                    background: rgba(0,0,0,.06);
+                    border-radius:8px;
+                    overflow:auto;
+                    font-size:.88rem;
+                    border:1px solid rgba(0,0,0,.12);
+                    white-space:pre;">{{ post.bibtex }}</pre>
+
+        <div class="copy-row"
+             style="display:flex; justify-content:flex-end;">
+
+          <button type="button"
+                  class="pub-copy-btn"
+                  data-bib-id="bib-{{ post.url | slugify }}"
+                  style="padding:.35rem .6rem;
+                         font-size:.9rem;
+                         border:1px solid rgba(0,0,0,.15);
+                         border-radius:8px;
+                         background:#fff;
+                         cursor:pointer;">
+
+            Copy BibTeX
+
+          </button>
+
+        </div>
+
+      </details>
+
+    {% endif %}
+
+
+  {% elsif post.collection == 'teaching' %}
+
+    <div class="archive__item-excerpt">
+      {{ post.type }}, {{ post.venue }},
+      {{ post.date | date: "%Y" }}
+    </div>
+
+  {% elsif post.date %}
+
+    <div class="archive__item-excerpt">
+      {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}
+      {{ post.date | date: "%B %d, %Y" }}
+    </div>
+
+  {% endif %}
+
+
+  <!-- EXCERPT -->
+  {% if post.excerpt and site.read_more != 'enabled' %}
+    <div class="archive__item-excerpt">
+      {{ post.excerpt | markdownify }}
+    </div>
+  {% elsif post.excerpt and site.read_more == 'enabled' %}
+    <div class="archive__item-excerpt">
+      {{ post.excerpt | markdownify | remove: '\n' | remove: '\r' }}
+      <a href="{{ post.url | relative_url }}">Read more</a>
+    </div>
+  {% endif %}
+
+</div>
