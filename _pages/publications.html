@@ -8,51 +8,93 @@ robots: "noindex,follow"
 
 {% include base_path %}
 
-<!-- Simple client-side search (keeps archive look + numbering + sections) -->
-<div style="margin: 0.75rem 0 1.25rem 0;">
-  <label for="pubSearch" style="display:block; font-weight:600; margin-bottom:0.25rem;">
+<style>
+  /* Make section headers consistent with theme */
+  .pub-section { margin-top: 1.4rem; }
+
+  .pub-h2 {
+    margin: 1.2rem 0 0.35rem 0;
+    font-weight: 700;
+  }
+
+  .pub-hr {
+    margin: 0.35rem 0 1rem 0;
+  }
+
+  /* search box styling (minimal, theme-consistent) */
+  .pub-search-box {
+    margin: 0.75rem 0 1.25rem 0;
+  }
+
+  .pub-search-input {
+    width: 100%;
+    max-width: 720px;
+    padding: 0.55rem 0.6rem;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+</style>
+
+
+<!-- SEARCH BOX -->
+<div class="pub-search-box">
+  <label for="pubSearch" style="font-weight:600; display:block; margin-bottom:0.25rem;">
     Search
   </label>
+
   <input
     id="pubSearch"
+    class="pub-search-input"
     type="text"
-    placeholder="Type to filter by title/authors/venue..."
-    style="width:100%; max-width: 720px; padding:0.55rem 0.6rem; border:1px solid rgba(0,0,0,.15); border-radius:8px;"
+    placeholder="Type to filter by title, authors, venue..."
     autocomplete="off"
   />
 </div>
 
+
 <script>
-  // Filters publication entries by text content (title/authors/venue/etc).
-  document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('pubSearch');
-    if (!input) return;
+document.addEventListener('DOMContentLoaded', function () {
 
-    // We tag each item wrapper with .pub-entry (added below).
-    const items = Array.from(document.querySelectorAll('.pub-entry'));
+  const input = document.getElementById('pubSearch');
+  if (!input) return;
 
-    function norm(s){ return (s || '').toLowerCase().replace(/\s+/g,' ').trim(); }
+  const items = Array.from(document.querySelectorAll('.pub-entry'));
+  const sections = Array.from(document.querySelectorAll('.pub-section'));
 
-    input.addEventListener('input', function () {
-      const q = norm(input.value);
-      items.forEach(el => {
-        const hay = norm(el.textContent);
-        el.style.display = (!q || hay.includes(q)) ? '' : 'none';
-      });
+  function norm(s){
+    return (s || '').toLowerCase().replace(/\s+/g,' ').trim();
+  }
 
-      // Hide empty sections after filtering
-      document.querySelectorAll('.pub-section').forEach(sec => {
-        const anyVisible = Array.from(sec.querySelectorAll('.pub-entry'))
-          .some(el => el.style.display !== 'none');
-        sec.style.display = anyVisible ? '' : 'none';
-      });
+  input.addEventListener('input', function () {
+
+    const q = norm(input.value);
+
+    items.forEach(el => {
+      const hay = norm(el.textContent);
+      el.style.display = (!q || hay.includes(q)) ? '' : 'none';
     });
+
+    sections.forEach(sec => {
+
+      const visible = Array.from(sec.querySelectorAll('.pub-entry'))
+        .some(el => el.style.display !== 'none');
+
+      sec.style.display = visible ? '' : 'none';
+
+    });
+
   });
+
+});
 </script>
+
 
 {% assign pubs_all = site.publications | sort: "date" | reverse %}
 
+
 {% if site.publication_category %}
+
   {% for category in site.publication_category %}
 
     {% assign cat_key = category[0] %}
@@ -60,32 +102,51 @@ robots: "noindex,follow"
     {% assign pubs_in_cat = pubs_all | where: "category", cat_key %}
 
     {% if pubs_in_cat.size > 0 %}
+
 <section class="pub-section">
-## {{ cat_title }}
 
-* * *
+  <h2 class="pub-h2">{{ cat_title }}</h2>
 
-      {% assign counter = pubs_in_cat | size %}
-      {% for post in pubs_in_cat reversed %}
-        <div class="pub-entry">
-          {% include archive-single.html number=counter %}
-        </div>
-        {% assign counter = counter | minus: 1 %}
-      {% endfor %}
+  <hr class="pub-hr">
+
+  {% assign counter = pubs_in_cat | size %}
+
+  {% for post in pubs_in_cat reversed %}
+
+    <div class="pub-entry">
+
+      {% include archive-single.html number=counter %}
+
+    </div>
+
+    {% assign counter = counter | minus: 1 %}
+
+  {% endfor %}
+
 </section>
+
     {% endif %}
 
   {% endfor %}
+
 {% else %}
 
 <section class="pub-section">
+
   {% assign counter = pubs_all | size %}
+
   {% for post in pubs_all reversed %}
+
     <div class="pub-entry">
+
       {% include archive-single.html number=counter %}
+
     </div>
+
     {% assign counter = counter | minus: 1 %}
+
   {% endfor %}
+
 </section>
 
 {% endif %}
