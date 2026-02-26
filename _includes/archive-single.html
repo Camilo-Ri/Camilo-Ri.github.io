@@ -23,6 +23,15 @@
 
     {% if post.pdf %}
       <a href="{{ post.url | relative_url }}">{{ title }}</a>
+
+      {% if post.pdf and post.pdf != "" %}
+        <a href="{{ post.pdf | relative_url }}"
+           class="pub-pdf-btn"
+           style="margin-left:.5rem; text-decoration:none; border:1px solid rgba(0,0,0,.15);
+                  border-radius:999px; padding:.08rem .55rem; font-size:.85rem; display:inline-block;">
+          PDF
+        </a>
+      {% endif %}
     {% elsif post.paperurl %}
       <a href="{{ post.paperurl }}">{{ title }}</a>
     {% elsif post.link %}
