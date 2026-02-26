@@ -152,38 +152,32 @@ document.addEventListener('DOMContentLoaded', function () {
 {% endif %}
 
 <script>
-  async function copyTextToClipboard(text) {
-    // Modern API (works on HTTPS + most browsers)
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-        return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-
-    // Fallback for Safari/iOS/older browsers
+  // iOS/Safari-friendly copy: try execCommand synchronously first
+  function copyViaExecCommand(text) {
     const ta = document.createElement("textarea");
     ta.value = text;
     ta.setAttribute("readonly", "");
-    ta.style.position = "absolute";
-    ta.style.left = "-9999px";
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.left = "-1000px";
     document.body.appendChild(ta);
+
+    ta.focus();
     ta.select();
     ta.setSelectionRange(0, ta.value.length);
 
+    let ok = false;
     try {
-      const ok = document.execCommand("copy");
-      return ok;
+      ok = document.execCommand("copy");
     } catch (e) {
-      return false;
-    } finally {
-      document.body.removeChild(ta);
+      ok = false;
     }
+
+    document.body.removeChild(ta);
+    return ok;
   }
 
-  document.addEventListener("click", async (e) => {
+  document.addEventListener("click", function (e) {
     const btn = e.target.closest(".pub-copy-btn");
     if (!btn) return;
 
@@ -194,7 +188,31 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    const ok = await copyTextToClipboard(pre.innerText);
-    if (!ok) alert("Copy failed. Please select and copy manually.");
+    const text = pre.textContent;
+
+    // 1) Synchronous (best for iOS Safari)
+    const ok = copyViaExecCommand(text);
+
+    if (ok) {
+      const old = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => { btn.textContent = old; }, 900);
+      return;
+    }
+
+    // 2) Modern API fallback (desktop browsers)
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          const old = btn.textContent;
+          btn.textContent = "Copied!";
+          setTimeout(() => { btn.textContent = old; }, 900);
+        })
+        .catch(() => {
+          alert("Copy failed. Please select and copy manually.");
+        });
+    } else {
+      alert("Copy failed. Please select and copy manually.");
+    }
   });
 </script>
