@@ -80,12 +80,18 @@
 
     
           {% if post.bibtex %}
-            <details>
-              <summary>Show BibTeX</summary>
-              <pre id="bib-{{ forloop.index }}">{{ post.bibtex }}</pre>
-              <button onclick="copyBib({{ forloop.index }})">Copy BibTeX</button>
-            </details>
-          {% endif %}
+          <details class="pub-bib">
+            <summary>Show BibTeX</summary>
+
+            <pre id="bib-{{ post.url | slugify }}" class="pub-pre">{{ post.bibtex }}</pre>
+
+            <div class="copy-row">
+              <button type="button" class="pub-copy-btn" data-bib-id="bib-{{ post.url | slugify }}">
+                Copy BibTeX
+              </button>
+            </div>
+         </details>
+         {% endif %}
     
         {% elsif post.date %}
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
