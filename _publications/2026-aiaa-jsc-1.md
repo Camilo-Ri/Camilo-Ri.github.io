@@ -1,7 +1,7 @@
 ---
 title: "Adaptive Controller for Simultaneous Spacecraft Attitude Tracking and Reaction Wheel Fault Detection"
 collection: publications
-category: wip
+category: manuscripts
 permalink: /publication/2026-aiaa-jsc-1
 excerpt: ""
 date: 2026-01-07
