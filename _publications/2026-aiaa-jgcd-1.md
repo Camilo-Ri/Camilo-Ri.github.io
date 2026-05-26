@@ -1,5 +1,5 @@
 ---
-title: "Radial Basis Function Neural Network–Based Adaptive Attitude Control with Reaction–Wheel Health Estimation"
+title: "RBFNN–Based Adaptive Attitude Control with Reaction Wheel Health Estimation"
 collection: publications
 category: wip
 permalink: /publication/2026-aiaa-jgcd-1
