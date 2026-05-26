@@ -23,7 +23,7 @@ pdf: /files/2026-aiaa-jsc-1.pdf
 doi: 10.2514/1.A36424
 arxiv: 
 
-bibtex: 
+bibtex: |
   @article{Nehma-2026,
     author = {Nehma, George M. and Riano-Rios, Camilo and Sakal, Morokot and Tiwari, Madhur},
     title = {Adaptive Controller for Simultaneous Spacecraft Attitude Tracking and Reaction Wheel Fault Detection},
