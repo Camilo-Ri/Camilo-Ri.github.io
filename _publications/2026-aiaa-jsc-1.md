@@ -6,7 +6,7 @@ permalink: /publication/2026-aiaa-jsc-1
 excerpt: ""
 date: 2026-01-07
 
-venue: "Journal of Spacecraft and Rockets (Accepted, to appear)"
+venue: "Journal of Spacecraft and Rockets"
 volume: ""
 number: ""
 pages: ""
