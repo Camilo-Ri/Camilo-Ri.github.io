@@ -1,10 +1,10 @@
 ---
-title: "RBFNN–Based Adaptive Attitude Control with Reaction Wheel Health Estimation"
+title: "Radial-Basis-Function-Neural-Network–Based Adaptive Attitude Control with Reaction Wheel Health Estimation"
 collection: publications
-category: wip
+category: manuscripts
 permalink: /publication/2026-aiaa-jgcd-1
 excerpt: ""
-date: 2026-01-10
+date: 2026-06-20
 
 venue: "Journal of Guidance, Control and Dynamics (Accepted, to appear)"
 volume: ""
@@ -17,11 +17,23 @@ authors:
   - Camilo Riano-Rios
   - Madhur Tiwari
 
-publication_type: "Work in Progress / Under Review"
+publication_type: "Journal paper"
 
 pdf: /files/2026-aiaa-jgcd-1.pdf
-doi: 
+doi: 10.2514/1.G009838
 arxiv: 
 
-bibtex: 
+bibtex: |
+  @article{Sakal-2026,
+    author = {Sakal, Morokot and Nehma, George M. and Riano-Rios, Camilo and Tiwari, Madhur},
+    title = {Radial-Basis-Function-Neural-Network–Based Adaptive Attitude Control with Reaction Wheel Health Estimation},
+    journal = {Journal of Guidance, Control, and Dynamics},
+    volume = {0},
+    number = {0},
+    pages = {1-10},
+    year = {0},
+    doi = {10.2514/1.G009838},
+    URL = {https://doi.org/10.2514/1.G009838},
+    eprint = {https://doi.org/10.2514/1.G009838}
+  }
 ---
