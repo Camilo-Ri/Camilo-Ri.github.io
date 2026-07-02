@@ -6,7 +6,7 @@ permalink: /publication/2026-aiaa-jgcd-1
 excerpt: ""
 date: 2026-06-20
 
-venue: "Journal of Guidance, Control and Dynamics (Accepted, to appear)"
+venue: "Journal of Guidance, Control and Dynamics"
 volume: ""
 number: ""
 pages: ""
