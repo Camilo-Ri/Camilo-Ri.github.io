@@ -1,13 +1,13 @@
 ---
 permalink: /
-title: "Welcome to my personal website"
+title: ""
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-Hi, welcome to my personal website!
+Hi!
 
 I am currently an assistant professor in the Aerospace, Physics and Space Sciences department at Florida Institute of Technology. Here you will find information about my background, current/future projects and professional interests. I am always happy to connect and explore potential collaborations, feel free to reach out!
 
